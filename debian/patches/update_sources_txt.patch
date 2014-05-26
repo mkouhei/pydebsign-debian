@@ -1,0 +1,18 @@
+Description: updated SOURCES.txt automatically
+Last-Update: 2014-05-26
+
+Index: pydebsign/pydebsign.egg-info/SOURCES.txt
+===================================================================
+--- pydebsign.orig/pydebsign.egg-info/SOURCES.txt	2014-05-26 16:58:54.832542739 +0900
++++ pydebsign/pydebsign.egg-info/SOURCES.txt	2014-05-26 16:59:21.698845441 +0900
+@@ -2,8 +2,10 @@
+ .travis.yml
+ LICENSE
+ MANIFEST.in
++PKG-INFO
+ README.rst
+ requirements.txt
++setup.cfg
+ setup.py
+ tox.ini
+ docs/HISTORY.rst

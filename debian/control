@@ -1,0 +1,59 @@
+Source: pydebsign
+Section: python
+Priority: optional
+Maintainer: Kouhei Maeda <mkouhei@palmtb.net>
+Build-Depends: debhelper (>= 9.0.0),
+               python-all (>= 2.6),
+               python-setuptools,
+               python-pytest,
+               python-gnupg,
+               python-debian,
+               python-chardet,
+               pep8,
+               python-pytest,
+               python3-all (>= 3.2),
+               python3-setuptools,
+               python3-gnupg,
+               python3-debian,
+               python3-chardet,
+               python3-pep8,
+               python3-pytest,
+               gnupg,
+               dput,
+               lintian,
+               quilt
+Standards-Version: 3.9.5
+X-Python-Version: >= 2.6
+X-Python3-Version: >= 3.2
+Homepage: https://pypi.python.org/pypi/pydebsign
+
+Package: python-pydebsign
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends},
+               python-gnupg,
+               python-debian,
+               python-chardet,
+               gnupg,
+               dput,
+               lintian
+Provides: ${python:Provides}
+Description: yet another library of debsign
+ Python library to do the same behavior debsign.
+ debsign is a command of devscripts that sign a Debian .changes and .dsc file 
+ pare using GPG, the command cannot use in environment witout TTY, for example 
+ invokeking by CI.
+
+Package: python3-pydebsign
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends},
+               python-gnupg,
+               python-debian,
+               python-chardet,
+               gnupg,
+               dput,
+               lintian
+Description: yet another library of debsign for Python3
+ Python library to do the same behavior debsign for Python3.
+ debsign is a command of devscripts that sign a Debian .changes and .dsc file 
+ pare using GPG, the command cannot use in environment witout TTY, for example 
+ invokeking by CI.

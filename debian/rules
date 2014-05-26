@@ -1,0 +1,39 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with python2,python3,quilt
+
+override_dh_auto_build:
+	for py in $(shell pyversions -vr); do \
+		python$$py setup.py build --build-base=build$$py; \
+	done
+	for py in $(shell py3versions -vr); do \
+		python$$py setup.py build --build-base=build$$py; \
+	done
+
+override_dh_auto_test:
+ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
+	set -e; \
+	for py in $(shell pyversions -vr); do \
+		py.test-$$py -v build$$py/lib.$(shell python -c 'import distutils.util as d; print d.get_platform()')-$$py; \
+	done
+	set -e && for py in $(shell py3versions -vr); do \
+		py.test-$$py -v build$$py/lib; \
+	done
+endif
+
+override_dh_auto_install:
+	python setup.py install --no-compile -O0 --install-layout=deb \
+		--root $(CURDIR)/debian/python-pydebsign && \
+	python3 setup.py install --no-compile -O0 --install-layout=deb \
+		--root $(CURDIR)/debian/python3-pydebsign
+	find $(CURDIR)/debian/python-pydebsign/ -name tests | xargs rm -rf
+	find $(CURDIR)/debian/python3-pydebsign/ -name tests | xargs rm -rf
+
+override_dh_auto_clean:
+	dh_clean
+	rm -f $(CURDIR)/misc/dummy_gpg/random_seed
+	rm -rf $(CURDIR)/build*
