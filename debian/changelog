@@ -1,5 +1,5 @@
-pydebsign (0.1.1-1) unstable; urgency=low
+pydebsign (0.1.2-1) unstable; urgency=low
 
   * Initial release (Closes: #nnnn)
 
- -- Kouhei Maeda <mkouhei@palmtb.net>  Mon, 26 May 2014 18:38:34 +0900
+ -- Kouhei Maeda <mkouhei@palmtb.net>  Tue, 27 May 2014 18:00:51 +0900
